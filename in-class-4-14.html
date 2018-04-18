@@ -1,0 +1,56 @@
+<hmtl>
+	<script>
+		class Animal {
+			constructor(species, sex, size){
+				console.log("called")
+				this.species = species
+				this.sex = sex
+				this.size = size
+				this.hungerLevel = 10
+			}
+
+			speak() {
+				console.log(`hello, I'm a ${this.species} that is ${this.size}, and I am ${this.sex}`)
+			}
+			eat(units){
+				this.hungerLevel -= units
+				return `hunger level is now ${this.hungerLevel}`
+			}
+
+			exercise(units){
+				this.hungerLevel += units
+				return `hunger level is now ${this.hungerLevel}`
+			}
+		}
+
+		class Dog extends Animal {
+			constructor(sex, size, breed, barkLevel){
+				super("dog", sex, size)
+				this.breed = breed
+				this.barkLevel = barkLevel
+			}
+			bark(){
+				if(this.barkLevel > 10){
+					console.log("WOOF!")
+				} else {
+					console.log("woof")
+				}
+			}
+			static smallDog(sex, breed){
+				return new Dog(sex, "small", breed, 4)
+			}
+		}
+
+		const dog = new Dog("female", "large", "lab", 11)
+		const dog2 = new Dog("male", "small", "lab", 4)
+		const dog3IsSameAsDog2 = Dog.smallDog("male", "lab")
+		console.log(dog.bark())
+		console.log(dog2.bark())
+		console.log(dog3IsSameAsDog2.bark())
+		console.log(dog.eat(5))
+		console.log(dog.exercise(2))
+		console.log(dog2.speak())
+
+
+	</script>
+</hmtl>

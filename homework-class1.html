@@ -1,0 +1,62 @@
+<hmtl>
+	<script>
+		class Instrument {
+			constructor(family, scientific, played, volume){
+				console.log("called")
+				this.family = family
+				this.scientific = scientific
+				this.played = played
+				this.volume = 10
+			}
+
+			noiseLevel(){
+				if(this.volume > 10){
+					console.log("loud")
+				} else {
+					console.log("quiet")
+				}
+			}
+
+			description(){
+				console.log(`The ${this.family} family is played by ${this.played}, and its scientific name is "${this.scientific}.`)
+			}
+
+			lowVolume(units){
+				this.volume -= units
+				return `low volume is ${this.volume}`
+			}
+
+			highVolume(units){
+				this.volume += units
+				return `high volume is ${this.volume}`
+			}
+		}
+
+		class Percussion extends Instrument {
+			constructor(family, scientific, played, volume){
+			super("percussion", "membranophone", played, volume)
+			this.this.breed = breed
+				this.barkLevel = barkLevel
+		}
+}
+		class Wind extends Instrument {
+			constructor(family, scientific, played, volume){
+			super("wind", "aerophone", "mouth", volume)
+			}
+		}
+
+		class String extends Instrument {
+			constructor(family, scientific, played, volume){
+			super("string", "chordophone", played, volume)
+
+		}
+	}
+
+		const flute = new Wind ("mouth", 12)
+		console.log(flute.description())
+		console.log(flute.lowVolume(3))
+		console.log(flute.highVolume(15))
+
+
+	</script>
+</hmtl>
