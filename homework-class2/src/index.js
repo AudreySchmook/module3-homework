@@ -4,16 +4,16 @@ import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
 function wrapPost(post) {
-  return <li>{post}</li>
+  return <li> {post} </li>
 }
 
-const CurrentHabits = (props) => {
-  const liPosts = props.posts.map(wrapPost)
+const CurrentPosts = (props) => {
+  const liPost = props.posts.map(wrapPost)
   return (
     <div>
-      <ol>
-       {liPosts}
-      </ol>
+      <ul>
+       {liPost}
+      </ul>
     </div>
   )
 }
@@ -22,21 +22,36 @@ class UserPosts extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      postName: '',
+      postTitle: '',
+      postAuthor: '',
+      postBody: '',
       posts: []
     }
   }
 
-  handleChange = (event) => {
-    this.setState({ habitPost: event.target.value })
+  handleTitleChange = (event) => {
+    this.setState({ postTitle: event.target.value })
   }
+
+  handleAuthorChange = (event) => {
+    this.setState({ postAuthor: event.target.value })
+  }
+
+  handleBodyChange = (event) => {
+    this.setState({ postBody: event.target.value })
+  }
+  
 
   handleSubmit = (event) => {
     event.preventDefault()
     this.setState((prevState) => {
       return {
-        postName: '',
-        posts: [ ...prevState.post, prevState.postName]
+        postTitle: '',
+        Title: [ ...prevState.post, prevState.postTitle],
+        postAuthor: '',
+        Author: [ ...prevState.post, prevState.postAuthor],
+        postBody: '',
+        Body: [ ...prevState.post, prevState.postBody]
       }
     })
   }
@@ -47,19 +62,19 @@ class UserPosts extends Component {
         <form onSubmit={this.handleSubmit}>
           <label>
             Title:
-            <input type="text" value={this.state.postName} onChange={this.handleChange} />
+            <input type="text" value={this.state.postTitle} onChange={this.handleTitleChange} />
           </label>
           <label>
             Author:
-            <input type="text" value={this.state.postName} onChange={this.handleChange} />
+            <input type="text" value={this.state.postAuthor} onChange={this.handleAuthorChange} />
           </label>
           <label>
-            Post Content:
-            <input type="text" value={this.state.postName} onChange={this.handleChange} />
+            Body:
+            <input type="text" value={this.state.postBody} onChange={this.handleBodyChange} />
           </label>
           <input type="submit" value="Submit" />
         </form>
-        <CurrentHabits posts={this.state.posts} />
+        <CurrentPosts posts={this.state.posts} />
       </div>
     )
   }
@@ -69,14 +84,14 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      name2: "Fitz"
+      name: "Audrey",
     }
   }
 
   render() {
     return (
       <div>
-        <h1>Welcome to {this.props.name}'s blog!</h1>
+        <h1>Welcome to {this.state.name}'s blog!</h1>
         <h2>Submit your post below:</h2>
         <UserPosts />
       </div>
@@ -84,5 +99,5 @@ class App extends Component {
   }
 }
 
-ReactDOM.render(<App name="Audrey" />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();
